@@ -2,10 +2,6 @@
 
 **Arquivos utilizados no minicurso Minicurso de Análise de Dados de Mídias Sociais.**
 
-<p align="center">
-  <img src="statics/gif/ExcellentBackDromaeosaur-size_restricted.gif">
-</p>
-    
     Arquivos de Coleta, Limpeza, Exploração e Simulação.
 
 

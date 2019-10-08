@@ -23,15 +23,14 @@ public class PopulationMinicurso{
 	
 	private static final String HAWAIICoord = "EPSG:2782";	
 	private static final Logger log = Logger.getLogger(PopulationMinicurso.class);
-    private static final String csvFile = "";
+    	private static final String csvFile = "";
 
 	public static void main(String [] args) throws IOException {
 		
 		CoordinateTransformation ct = TransformationFactory.getCoordinateTransformation(TransformationFactory.WGS84, HAWAIICoord);
-
 		Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         
-        int columns = 3;
+        	int columns = 3;
 		createPersons(scenario, 145, ct, columns);
 		createActivities(scenario,ct); //this method creates the remaining activities
 		
@@ -39,12 +38,12 @@ public class PopulationMinicurso{
 		new PopulationWriter(scenario.getPopulation(), scenario.getNetwork()).write(popFilename); // and finally the population will be written to a xml file
 		log.info("population written to: " + popFilename); 
 		
-    }
+    	}
 
 	private static void createActivities(Scenario scenario, CoordinateTransformation ct) {
 		
 		Population pop =  scenario.getPopulation();
-        PopulationFactory pb = pop.getFactory(); //the population builder creates all we need
+        	PopulationFactory pb = pop.getFactory(); //the population builder creates all we need
         
 		for (Person pers : pop.getPersons().values()) { //this loop iterates over all persons
 			
@@ -56,8 +55,8 @@ public class PopulationMinicurso{
 			Leg leg = pb.createLeg(TransportMode.car);
 			plan.addLeg(leg); // there needs to be a log between two activities
 
-            //shelter activity on a random shelter among the shelter set
-            Point p = getShelterPointInFeature(ct);
+           	 	//shelter activity on a random shelter among the shelter set
+            		Point p = getShelterPointInFeature(ct);
 			Activity shelt = pb.createActivityFromCoord("shelter", new Coord(p.getX(), p.getY()));
 			double startTime = 8*3600;
 			shelt.setStartTime(startTime);
@@ -72,8 +71,8 @@ public class PopulationMinicurso{
 		Population pop = scenario.getPopulation();
 		PopulationFactory pb = pop.getFactory();
 		String[][] position = new String[number][col];
-        position = CSV.getCSVData(csvFile, number, col);
-        int i = 0;
+        	position = CSV.getCSVData(csvFile, number, col);
+        	int i = 0;
 
 		for (; number > 0; number--) {
 			Person pers = pb.createPerson(Id.create(position[i][0], Person.class));
@@ -83,16 +82,16 @@ public class PopulationMinicurso{
 			Coord coord = ct.transform(c);
 			Activity act = pb.createActivityFromCoord("home", new Coord(coord.getX(), coord.getY()));
 			plan.addActivity(act);
-            pers.addPlan(plan);
-            i++;
+            		pers.addPlan(plan);
+            		i++;
 		}
 	}
 
 	public static Point getShelterPointInFeature(CoordinateTransformation ct) {
 
-        Coord c = ShelterCoord.getCoord(ct);
-        return MGC.coord2Point(c);
+		Coord c = ShelterCoord.getCoord(ct);
+		return MGC.coord2Point(c);
     	
-    }
+    	}
 	
 }

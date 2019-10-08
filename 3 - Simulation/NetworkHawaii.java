@@ -14,21 +14,24 @@ import org.matsim.utils.gis.matsim2esri.network.PolygonFeatureGenerator;
 import org.xml.sax.SAXException;
 
 class NetworkGeneratorHawaii {
-	
+	//sistema de coordenadas do Havaí
 	public static final String HAWAIICoord = "EPSG:2782";
 
 	public static void main(String [] args) throws SAXException {
+		
+		//arquivo .osm com dados para criar a rede MATSim
 		String osm = "";
-
+		
 		Scenario sc = ScenarioUtils.createScenario(ConfigUtils.createConfig()) ;
 		Network net = sc.getNetwork();	
-
+		
+		//objeto para transformar WGS84 em EPSG:2782
 		CoordinateTransformation ct = TransformationFactory.getCoordinateTransformation(TransformationFactory.WGS84, HAWAIICoord);
 		
 		OsmNetworkReader onr = new OsmNetworkReader(net,ct); //constrói um novo leitor de openstreetmap 
 		onr.setHighwayDefaults(1, "null", 1, 60/3.6, 1, 600); 
 		onr.setHighwayDefaults(1, "service", 1, 60/3.6, 1, 600); 
-		onr.parse(osm); //começa a conversão de .osm para matsim
+		onr.parse(osm); //converte .osm para matsim
 
 		new NetworkCleaner().run(net); //remove links isolados ou não conectados
 		String filename = "";

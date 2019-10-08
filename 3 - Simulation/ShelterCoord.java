@@ -45,20 +45,20 @@ public class ShelterCoord {
 		
 		List<Coord> list = new ArrayList<>(); 
 	     
-	    list.add(coordHCES);
-	    list.add(coordHSH);
-	    list.add(coordUN);
-	    list.add(coordUHHAF);
-	    list.add(coordPACRC);
-	    list.add(coordHCC);
-	    list.add(coordCCECS);
-	    list.add(coordTDKICP);
-	    list.add(coordUHH);
-	    list.add(coordHPA);
-	    list.add(coordHPALM);
+		list.add(coordHCES);
+		list.add(coordHSH);
+		list.add(coordUN);
+		list.add(coordUHHAF);
+		list.add(coordPACRC);
+		list.add(coordHCC);
+		list.add(coordCCECS);
+		list.add(coordTDKICP);
+		list.add(coordUHH);
+		list.add(coordHPA);
+		list.add(coordHPALM);
 	
 		Random rand = new Random(); 
-        return list.get(rand.nextInt(list.size())); 
+        	return list.get(rand.nextInt(list.size())); 
 	    
     }
 

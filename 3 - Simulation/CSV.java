@@ -9,7 +9,7 @@ public class CSV {
 	
     public static String[][] getCSVData(String csvFile, int i, int j) {
 		
-		BufferedReader br = null;
+	BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
         String[] position = null;
